@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Cómo está tu cuerpo, de verdad? — Soy Geovana</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root {
+  --vino:        #5C2A35;
+  --vino-mid:    #8B4455;
+  --cobre:       #C4785A;
+  --cobre-light: #DFA585;
+  --miel:        #DCAA8A;
+  --piel:        #F0E2D5;
+  --piel-pale:   #FAF5F0;
+  --tierra:      #3D1520;
+  --tierra-mid:  #6B3040;
+  --tierra-soft: #9E6070;
+  --blanco:      #FFFBF8;
+
+  --font-d: 'Cormorant Garamond', Georgia, serif;
+  --font-b: 'DM Sans', system-ui, sans-serif;
+  --r: 18px;
+  --rl: 26px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--blanco);
+  color: var(--tierra);
+  font-family: var(--font-b);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ─────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.1rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,251,248,0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--piel); }
+
+.nav-brand {
+  font-family: var(--font-d);
+  font-size: 1.25rem; font-weight: 400;
+  color: var(--tierra); text-decoration: none; letter-spacing: 0.05em;
+}
+.nav-sub {
+  font-size: 11px; font-weight: 400; color: var(--tierra-soft);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.nav-cta {
+  font-size: 13px; font-weight: 400; color: var(--cobre);
+  text-decoration: none; letter-spacing: 0.02em;
+  cursor: pointer; background: none; border: none; font-family: var(--font-b);
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero {
+  min-height: 100dvh;
+  display: grid; place-items: center;
+  text-align: center;
+  padding: 8rem 2rem 6rem;
+  position: relative; overflow: hidden;
+}
+
+/* Blobs de fondo — discretos, no protagonistas */
+.blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; z-index: 0;
+}
+.blob-a { width: 50vw; height: 50vw; background: var(--piel); opacity: 0.6; top: -8%; right: -12%; }
+.blob-b { width: 38vw; height: 38vw; background: var(--miel); opacity: 0.3; bottom: -4%; left: -8%; }
+.blob-c { width: 28vw; height: 28vw; background: var(--cobre-light); opacity: 0.2; top: 45%; left: 22%; }
+
+.hero-inner { position: relative; z-index: 1; max-width: 700px; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--cobre);
+  margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards;
+}
+.eyebrow::before, .eyebrow::after {
+  content: ''; display: block; width: 24px; height: 1px;
+  background: var(--cobre-light); opacity: 0.7;
+}
+
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 300; line-height: 1.08; letter-spacing: -0.01em;
+  color: var(--tierra); margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.7s 0.22s ease forwards;
+}
+.hero h1 em { font-style: italic; color: var(--vino); }
+
+.hero-sub {
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  color: var(--tierra-mid); max-width: 480px; margin: 0 auto 2.75rem;
+  line-height: 1.9; font-weight: 300;
+  opacity: 0; animation: fadeUp 0.7s 0.36s ease forwards;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 0.5rem; font-family: var(--font-b);
+  font-size: 14px; font-weight: 400; padding: 1rem 2rem;
+  border-radius: 60px; border: none; cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+  letter-spacing: 0.02em; text-decoration: none;
+}
+.btn-primary {
+  background: var(--vino); color: var(--piel-pale);
+  opacity: 0; animation: fadeUp 0.7s 0.5s ease forwards;
+}
+.btn-primary:hover { background: var(--tierra); transform: translateY(-2px); }
+
+.hero-note {
+  display: block; margin-top: 1.1rem;
+  font-size: 12.5px; color: var(--tierra-soft); letter-spacing: 0.03em;
+  opacity: 0; animation: fadeUp 0.7s 0.62s ease forwards;
+}
+
+/* ── ORNAMENT ─────────────────────────────────────── */
+.ornament {
+  text-align: center; padding: 1.25rem;
+  color: var(--miel); font-size: 1.2rem;
+  letter-spacing: 0.9rem; user-select: none;
+}
+
+/* ── WAVE ─────────────────────────────────────────── */
+.wave { line-height: 0; overflow: hidden; }
+.wave svg { display: block; width: 100%; }
+
+/* ── SECTION ──────────────────────────────────────── */
+.section { padding: 5.5rem 2rem; }
+.section-label {
+  display: block; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cobre); margin-bottom: 0.85rem;
+}
+.section-title {
+  font-family: var(--font-d);
+  font-size: clamp(1.9rem, 4vw, 3.4rem);
+  font-weight: 300; color: var(--tierra); line-height: 1.18;
+}
+.section-title em { font-style: italic; color: var(--vino); }
+
+/* ── TRES COSAS ───────────────────────────────────── */
+.tres { background: var(--piel); }
+.tres-inner { max-width: 960px; margin: 0 auto; text-align: center; }
+.tres-intro {
+  max-width: 500px; margin: 0.75rem auto 3.5rem;
+  color: var(--tierra-mid); font-weight: 300; font-size: 15px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.card {
+  background: var(--blanco); border-radius: var(--rl);
+  padding: 2.25rem 1.85rem; text-align: left;
+  border: 1px solid rgba(92,42,53,0.1);
+  transition: transform 0.3s ease;
+}
+.card:hover { transform: translateY(-3px); }
+.card-num {
+  font-family: var(--font-d); font-size: 2.5rem; font-weight: 300;
+  color: var(--miel); line-height: 1; margin-bottom: 1rem;
+}
+.card h3 {
+  font-family: var(--font-d); font-size: 1.35rem; font-weight: 500;
+  color: var(--tierra); margin-bottom: 0.65rem; line-height: 1.3;
+}
+.card p { font-size: 14px; color: var(--tierra-mid); line-height: 1.8; font-weight: 300; }
+
+/* ── CITA ─────────────────────────────────────────── */
+.cita-section {
+  background: var(--tierra); padding: 4.5rem 2rem; text-align: center;
+}
+.cita-section blockquote {
+  font-family: var(--font-d);
+  font-size: clamp(1.3rem, 2.8vw, 2.2rem);
+  font-weight: 300; font-style: italic;
+  color: var(--piel); max-width: 640px;
+  margin: 0 auto; line-height: 1.45;
+}
+.cita-section cite {
+  display: block; margin-top: 1.5rem;
+  font-family: var(--font-b); font-size: 11.5px;
+  font-style: normal; font-weight: 400;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--cobre-light);
+}
+
+/* ── QUIZ SECTION ─────────────────────────────────── */
+.quiz-wrap { max-width: 640px; margin: 0 auto; }
+.quiz-intro { text-align: center; margin-bottom: 2.75rem; }
+.quiz-intro p {
+  color: var(--tierra-mid); font-weight: 300; font-size: 15px;
+  max-width: 460px; margin: 0.65rem auto 0;
+}
+
+/* ── QUIZ CARD ────────────────────────────────────── */
+.quiz-card {
+  background: #fff;
+  border: 1px solid var(--piel);
+  border-radius: var(--rl);
+  padding: clamp(2rem, 5vw, 3.25rem);
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 32px rgba(92,42,53,0.07);
+}
+.quiz-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--vino), var(--cobre));
+}
+
+.q-state { display: none; }
+.q-state.on { display: block; }
+
+/* ── PROGRESS ─────────────────────────────────────── */
+.progress {
+  display: flex; align-items: center;
+  gap: 5px; justify-content: center; margin-bottom: 2.25rem;
+}
+.dot {
+  height: 5px; border-radius: 3px;
+  background: var(--piel); transition: all 0.3s ease; width: 5px;
+}
+.dot.cur { background: var(--vino); width: 22px; }
+.dot.done { background: var(--cobre-light); }
+
+/* ── PREGUNTA ─────────────────────────────────────── */
+.q-label {
+  display: block; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cobre); margin-bottom: 1rem;
+}
+.q-text {
+  font-family: var(--font-d);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 400; color: var(--tierra);
+  line-height: 1.38; margin-bottom: 1.85rem;
+}
+.options { display: grid; gap: 9px; }
+.opt {
+  width: 100%; background: var(--piel-pale);
+  border: 1.5px solid transparent;
+  border-radius: var(--r); padding: 1rem 1.3rem;
+  text-align: left; font-family: var(--font-b);
+  font-size: 14.5px; font-weight: 300;
+  color: var(--tierra-mid); cursor: pointer;
+  transition: all 0.2s ease; line-height: 1.6;
+  position: relative;
+}
+.opt:hover { border-color: var(--cobre-light); background: var(--piel); color: var(--tierra); }
+.opt.sel { border-color: var(--vino); background: var(--piel); color: var(--tierra); }
+.opt .check {
+  position: absolute; right: 1.1rem; top: 50%;
+  transform: translateY(-50%); width: 19px; height: 19px;
+  border-radius: 50%; background: var(--vino);
+  display: none; align-items: center; justify-content: center;
+}
+.opt.sel .check { display: flex; }
+.opt .check svg { width: 10px; height: 10px; stroke: #fff; fill: none; stroke-width: 2.5; }
+
+/* ── START ────────────────────────────────────────── */
+.q-start { text-align: center; }
+.q-start h2 {
+  font-family: var(--font-d);
+  font-size: clamp(1.7rem, 3.8vw, 2.7rem);
+  font-weight: 300; color: var(--tierra);
+  margin-bottom: 1.1rem; line-height: 1.25;
+}
+.q-start p {
+  font-size: 14.5px; font-weight: 300;
+  color: var(--tierra-mid); line-height: 1.9;
+  max-width: 440px; margin: 0 auto 2.25rem;
+}
+.pills {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; margin-bottom: 2.5rem;
+}
+.pill {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 12px; font-weight: 400; color: var(--tierra-mid);
+  background: var(--piel); padding: 0.38rem 0.85rem;
+  border-radius: 30px;
+}
+.pill svg { width: 12px; height: 12px; stroke: var(--cobre); fill: none; stroke-width: 2; }
+
+/* ── LOADING ──────────────────────────────────────── */
+.q-loading { text-align: center; padding: 3rem 0; }
+.spin-ring {
+  width: 50px; height: 50px;
+  border: 2px solid var(--piel);
+  border-top-color: var(--vino);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 1.75rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.q-loading p {
+  font-family: var(--font-d); font-size: 1.4rem;
+  font-style: italic; font-weight: 300;
+  color: var(--tierra-mid); line-height: 1.55;
+}
+
+/* ── RESULT ───────────────────────────────────────── */
+.q-result { animation: fadeUp 0.45s ease; }
+.res-badge {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--vino); background: var(--piel);
+  padding: 0.38rem 0.95rem; border-radius: 30px; margin-bottom: 1.35rem;
+}
+.res-title {
+  font-family: var(--font-d);
+  font-size: clamp(1.7rem, 3.8vw, 2.8rem);
+  font-weight: 300; color: var(--tierra);
+  line-height: 1.2; margin-bottom: 1.35rem;
+}
+.res-title em { font-style: italic; color: var(--vino); }
+.res-body { font-size: 14.5px; font-weight: 300; color: var(--tierra-mid); line-height: 1.95; margin-bottom: 1.75rem; }
+.res-body p + p { margin-top: 0.9rem; }
+.res-line { height: 1px; background: var(--piel); margin: 2rem 0; }
+
+/* ── EMAIL FORM ───────────────────────────────────── */
+.email-box h3 {
+  font-family: var(--font-d); font-size: 1.6rem;
+  font-weight: 400; color: var(--tierra);
+  margin-bottom: 0.6rem; line-height: 1.35;
+}
+.email-box p {
+  font-size: 13.5px; font-weight: 300; color: var(--tierra-mid);
+  line-height: 1.85; margin-bottom: 1.6rem; max-width: 400px;
+}
+.form-fields { display: grid; gap: 0.7rem; }
+.form-fields input {
+  width: 100%; padding: 0.95rem 1.2rem;
+  border: 1.5px solid var(--piel);
+  border-radius: var(--r);
+  font-family: var(--font-b); font-size: 14.5px; font-weight: 300;
+  background: var(--piel-pale); color: var(--tierra);
+  outline: none; transition: border-color 0.2s, background 0.2s;
+}
+.form-fields input:focus { border-color: var(--vino); background: #fff; }
+.form-fields input::placeholder { color: var(--tierra-soft); }
+.btn-full { width: 100%; padding: 1.05rem; margin-top: 0.2rem; }
+.form-note {
+  margin-top: 0.75rem; font-size: 11.5px;
+  color: var(--tierra-soft); text-align: center; line-height: 1.65;
+}
+
+/* ── GRACIAS + MINI-RECURSO ───────────────────────── */
+.q-thanks { animation: fadeUp 0.45s ease; }
+
+.mr-welcome {
+  background: var(--piel); border-radius: var(--r);
+  padding: 1.35rem 1.5rem; margin-bottom: 1.85rem;
+}
+.mr-welcome strong {
+  display: block; font-family: var(--font-d);
+  font-size: 1.2rem; font-weight: 500;
+  color: var(--tierra); margin-bottom: 0.25rem;
+}
+.mr-welcome span {
+  font-size: 13.5px; font-weight: 300;
+  color: var(--tierra-mid); line-height: 1.75;
+}
+
+.mr-section-label {
+  display: flex; align-items: center; gap: 0.55rem;
+  font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--cobre); margin-bottom: 1.1rem;
+}
+.mr-section-label::after { content: ''; flex: 1; height: 1px; background: var(--piel); }
+
+.mr-practices { display: grid; gap: 0.9rem; margin-bottom: 1.85rem; }
+.mr-practice {
+  background: #fff; border: 1px solid var(--piel);
+  border-radius: var(--r); padding: 1.35rem 1.4rem;
+}
+.mr-practice-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--piel); color: var(--vino);
+  font-size: 11.5px; font-weight: 500; margin-bottom: 0.65rem;
+}
+.mr-practice h4 {
+  font-family: var(--font-d); font-size: 1.1rem; font-weight: 500;
+  color: var(--tierra); margin-bottom: 0.45rem; line-height: 1.3;
+}
+.mr-practice p { font-size: 13.5px; font-weight: 300; color: var(--tierra-mid); line-height: 1.85; }
+
+.mr-prompt {
+  background: var(--piel-pale);
+  border-left: 3px solid var(--cobre-light);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 1.35rem 1.4rem; margin-bottom: 1.85rem;
+}
+.mr-prompt-q {
+  font-family: var(--font-d); font-size: 1.2rem;
+  font-style: italic; font-weight: 400;
+  color: var(--tierra); line-height: 1.45; margin-bottom: 0.45rem;
+}
+.mr-prompt-note {
+  font-size: 12px; font-weight: 300; color: var(--tierra-soft); line-height: 1.7;
+}
+
+.mr-llevar {
+  background: var(--tierra); border-radius: var(--r);
+  padding: 1.65rem 1.85rem; text-align: center; margin-bottom: 1.85rem;
+}
+.mr-llevar-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--cobre-light);
+  margin-bottom: 0.65rem; display: block;
+}
+.mr-llevar-text {
+  font-family: var(--font-d); font-size: 1.15rem;
+  font-style: italic; font-weight: 300;
+  color: var(--piel); line-height: 1.65;
+}
+
+/* ── CTA POR PERFIL ───────────────────────────────── */
+.mr-cta {
+  border-radius: var(--r); padding: 1.65rem 1.85rem; text-align: center;
+}
+.mr-cta.cta-audio  { background: var(--piel); }
+.mr-cta.cta-master { background: var(--piel); }
+.mr-cta.cta-habitar { background: var(--piel); }
+.mr-cta.cta-despier { background: var(--piel); }
+
+.mr-cta p {
+  font-size: 14px; font-weight: 300; color: var(--tierra-mid);
+  line-height: 1.8; margin-bottom: 1.1rem;
+}
+.mr-cta strong { font-weight: 500; color: var(--tierra); }
+.mr-cta .cta-sub {
+  display: block; font-size: 11.5px;
+  color: var(--tierra-soft); margin-top: 0.75rem; line-height: 1.6;
+}
+
+/* ── DISCLAIMER ───────────────────────────────────── */
+.disclaimer {
+  padding: 2.25rem 2rem; max-width: 580px;
+  margin: 0 auto; text-align: center;
+}
+.disclaimer p { font-size: 12px; color: var(--tierra-soft); line-height: 1.9; }
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer {
+  background: var(--tierra); padding: 3.75rem 2rem; text-align: center;
+}
+.footer-brand {
+  font-family: var(--font-d); font-size: 1.5rem;
+  font-weight: 300; color: var(--piel);
+  letter-spacing: 0.07em; margin-bottom: 0.65rem; display: block;
+}
+footer p { font-size: 13px; color: rgba(240,226,213,0.5); line-height: 1.9; }
+.footer-links {
+  display: flex; gap: 1.5rem; justify-content: center; margin-top: 1.4rem;
+}
+footer a {
+  font-size: 12px; color: rgba(240,226,213,0.4);
+  text-decoration: none; letter-spacing: 0.07em;
+  transition: color 0.2s;
+}
+footer a:hover { color: var(--cobre-light); }
+
+/* ── ANIMATIONS ───────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 600px) {
+  .quiz-card { padding: 1.75rem 1.35rem; }
+  nav { padding: 0.9rem 1.35rem; }
+  .hero { padding: 6rem 1.35rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div>
+    <a class="nav-brand" href="#">Soy Geovana</a>
+    <div class="nav-sub">Acompañamiento · Cuerpo · Pérdida gestacional</div>
+  </div>
+  <button class="nav-cta" onclick="scrollToQuiz()">Hacer el test &rarr;</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+  <div class="hero-inner">
+    <span class="eyebrow">Un primer momento de contacto · Soy Geovana</span>
+    <h1>¿Cómo está<br>tu cuerpo,<br><em>de verdad?</em></h1>
+    <p class="hero-sub">No te pregunto cómo estás. Te pregunto cómo está tu cuerpo — ese que a veces siente cosas que no tienen nombre todavía.</p>
+    <button class="btn btn-primary" onclick="scrollToQuiz()">
+      Hacer el test — es gratuito
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg>
+    </button>
+    <span class="hero-note">5 preguntas &middot; sin juicio &middot; sin etapas &middot; a tu ritmo</span>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:var(--blanco);">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="56">
+    <path d="M0,28 C480,72 960,-8 1440,28 L1440,56 L0,56Z" fill="#F0E2D5"/>
+  </svg>
+</div>
+
+<!-- TRES COSAS -->
+<section class="section tres">
+  <div class="tres-inner">
+    <span class="section-label reveal">Lo que encontrarás aquí</span>
+    <h2 class="section-title reveal">Este test no te evalúa.<br><em>Te escucha.</em></h2>
+    <p class="tres-intro reveal">No hay respuestas correctas. No hay estados mejores ni peores. Solo un primer momento de contacto con lo que tu cuerpo lleva.</p>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="card-num">01</div>
+        <h3>Un espejo honesto</h3>
+        <p>Descubres desde qué lugar está habitando tu cuerpo ahora mismo — sin nombres clínicos, sin etapas obligatorias. Solo lo que es.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">02</div>
+        <h3>Lo que tu cuerpo puede necesitar</h3>
+        <p>Recibes una guía pequeña y concreta — tres prácticas suaves y una pregunta para escribir, específicas para donde estás hoy.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-num">03</div>
+        <h3>Un primer paso, tuyo</h3>
+        <p>Sin prisa. Sin meta. Solo un punto de contacto entre tú y lo que vive en tu cuerpo — para que no tengas que seguir cargándolo sola.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:var(--piel);">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="56">
+    <path d="M0,28 C360,-8 1080,64 1440,28 L1440,56 L0,56Z" fill="#3D1520"/>
+  </svg>
+</div>
+
+<!-- CITA -->
+<section class="cita-section">
+  <blockquote class="reveal">
+    "Nadie me preguntó cómo estaba mi cuerpo después de lo que viví. Solo me dijeron que era normal, que pronto estaría bien. Este test fue la primera vez que alguien se lo preguntó — y lo preguntó en serio."
+    <cite>— mujer que vivió una pérdida gestacional</cite>
+  </blockquote>
+</section>
+
+<!-- WAVE -->
+<div class="wave" style="background:var(--tierra);">
+  <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="56">
+    <path d="M0,28 C480,72 960,-8 1440,28 L1440,56 L0,56Z" fill="#FFFBF8"/>
+  </svg>
+</div>
+
+<!-- QUIZ -->
+<section class="section" id="quiz-section" style="padding-top:2.5rem;">
+  <div class="quiz-wrap">
+    <div class="quiz-intro reveal">
+      <span class="section-label">El test</span>
+      <h2 class="section-title">Sin prisa. Sin juicio.</h2>
+      <p>Elige lo que más se acerque a tu verdad de hoy. No hay respuesta correcta.</p>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+
+      <!-- START -->
+      <div class="q-state on" id="st-start">
+        <div class="q-start">
+          <h2>Antes de empezar</h2>
+          <p>Este es un espacio de escucha, no de evaluación. Si en algún momento necesitas parar, para. No hay obligación de terminar. Tu ritmo es el único que importa aquí.</p>
+          <div class="pills">
+            <span class="pill">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+              5 minutos
+            </span>
+            <span class="pill">
+              <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+              Sin respuestas correctas
+            </span>
+            <span class="pill">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              100% privado
+            </span>
+          </div>
+          <button class="btn btn-primary" onclick="startQuiz()" style="animation:none;opacity:1;">
+            Estoy lista — comenzar
+          </button>
+        </div>
+      </div>
+
+      <!-- QUESTION -->
+      <div class="q-state" id="st-q">
+        <div class="progress" id="prog"></div>
+        <span class="q-label" id="qLabel"></span>
+        <p class="q-text" id="qText"></p>
+        <div class="options" id="opts"></div>
+      </div>
+
+      <!-- LOADING -->
+      <div class="q-state q-loading" id="st-load">
+        <div class="spin-ring"></div>
+        <p>Tu cuerpo está hablando…<br>escuchando lo que dijo.</p>
+      </div>
+
+      <!-- RESULT -->
+      <div class="q-state q-result" id="st-res">
+        <span class="res-badge" id="resBadge"></span>
+        <h2 class="res-title" id="resTitle"></h2>
+        <div class="res-body" id="resBody"></div>
+        <div class="res-line"></div>
+        <div class="email-box">
+          <h3>Tu mini-guía te espera</h3>
+          <p>Déjame tu nombre y correo y te envío ahora mismo tu guía con prácticas y recursos específicos para donde está tu cuerpo hoy.</p>
+          <div class="form-fields" id="theForm">
+            <input type="text"  id="fName"  placeholder="Tu nombre" autocomplete="given-name"/>
+            <input type="email" id="fEmail" placeholder="Tu correo electrónico" autocomplete="email"/>
+            <button class="btn btn-primary btn-full" onclick="submitForm()" style="animation:none;opacity:1;">
+              Recibir mi guía
+            </button>
+          </div>
+          <p class="form-note">Sin spam. Solo lo que pediste.<br>Puedes darte de baja cuando quieras.</p>
+        </div>
+      </div>
+
+      <!-- MINI RECURSO + CTA por perfil -->
+      <div class="q-state" id="st-ty">
+        <div class="mr-welcome" id="mrWelcome">
+          <strong id="mrGreeting"></strong>
+          <span id="mrWelcomeText"></span>
+        </div>
+
+        <div class="mr-section-label">Tres prácticas para hoy</div>
+        <div class="mr-practices" id="mrPractices"></div>
+
+        <div class="mr-section-label">Para escribir — cuando quieras</div>
+        <div class="mr-prompt">
+          <p class="mr-prompt-q" id="mrPromptQ"></p>
+          <p class="mr-prompt-note">No hay respuesta correcta. Escribe sin editar, sin buscar que sea profundo. Lo que sea que llegue.</p>
+        </div>
+
+        <div class="mr-section-label">Para llevar contigo</div>
+        <div class="mr-llevar">
+          <span class="mr-llevar-label">Recuérdalo cuando lo necesites</span>
+          <p class="mr-llevar-text" id="mrLlevar"></p>
+        </div>
+
+        <div class="mr-cta" id="mrCta"></div>
+      </div>
+
+    </div><!-- /quiz-card -->
+  </div>
+</section>
+
+<div class="ornament">&mdash; &bull; &bull; &bull; &mdash;</div>
+
+<div class="disclaimer">
+  <p>Este test es un recurso de acompañamiento emocional y bienestar, no un diagnóstico médico ni psicológico. No sustituye la atención de un profesional de salud mental. Si estás atravesando un momento de crisis, te invitamos a buscar apoyo profesional especializado.</p>
+</div>
+
+<!-- WAVE -->
+<div class="wave" style="background:var(--blanco);">
+  <svg viewBox="0 0 1440 44" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="44">
+    <path d="M0,22 C720,56 1440,-10 1440,22 L1440,44 L0,44Z" fill="#3D1520"/>
+  </svg>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Soy Geovana</span>
+  <p>Un espacio donde tu cuerpo y tu experiencia tienen lugar.<br>Sin prisa. Sin etapas. A tu ritmo.</p>
+  <div class="footer-links">
+    <a href="#">Aviso de privacidad</a>
+    <a href="#">Contacto</a>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+<script>
+/* ──────────────────────────────────────────────────
+   PREGUNTAS — lenguaje corporal-experiencial
+   sin asumir que la mujer se identifica con "duelo"
+────────────────────────────────────────────────── */
+const Qs = [
+  {
+    text: "Cuando piensas en tu cuerpo ahora mismo, ¿qué imagen o sensación llega primero?",
+    opts: [
+      { t: "Una casa que siento vacía, como si ya no fuera del todo mía",         v: "S" },
+      { t: "Un peso que cargo por dentro, aunque por fuera parezca que estoy bien", v: "P" },
+      { t: "Algo inestable, como suelo que no termina de aparecer bajo los pies",   v: "B" },
+      { t: "No llega ninguna imagen — como si estuviera detrás de un vidrio",       v: "S" }
+    ]
+  },
+  {
+    text: "En este tiempo, ¿cómo describirías tu forma de estar en el mundo?",
+    opts: [
+      { t: "Me exijo más que antes — como si parar fuera peligroso",                       v: "B" },
+      { t: "Me cuesta arrancar — cosas que antes eran fáciles ahora se sienten lejanas",   v: "S" },
+      { t: "Oscilo: hay días que fluye y días que todo pesa, sin saber por qué",           v: "B" },
+      { t: "Sigo más o menos igual por fuera, aunque algo por dentro ya no es lo mismo",  v: "D" }
+    ]
+  },
+  {
+    text: "Cuando algo te recuerda lo que viviste, ¿qué sientes primero en el cuerpo?",
+    opts: [
+      { t: "Presión en el pecho o el vientre, como un puño que aprieta",           v: "P" },
+      { t: "Tensión en la garganta, como algo que quiere salir pero no puede",     v: "P" },
+      { t: "Entumecimiento — me desconecto, como si el cuerpo se apagara",        v: "S" },
+      { t: "Inquietud — como querer salir corriendo o no saber dónde poner eso",  v: "B" }
+    ]
+  },
+  {
+    text: "¿Qué necesita tu cuerpo hoy, más que nada?",
+    opts: [
+      { t: "Descanso real — que alguien más lo sostenga por un rato",              v: "P" },
+      { t: "Movimiento suave — sentir que sigue vivo, aunque sea despacio",        v: "D" },
+      { t: "Ser tocado con gentileza — sentirse cuidado, no ignorado",             v: "D" },
+      { t: "Aún no lo sé — todavía estoy tratando de entender qué siente",        v: "S" }
+    ]
+  },
+  {
+    text: "¿Cómo es tu relación con el placer y la alegría desde entonces?",
+    opts: [
+      { t: "Llegan a veces, pero me siento rara sintiéndolos — como si no tuviera permiso",  v: "D" },
+      { t: "Casi no llegan — hay como un vidrio entre yo y las cosas buenas",                 v: "S" },
+      { t: "A veces aparecen y a veces no — depende mucho del día",                           v: "B" },
+      { t: "Me cuestan — mi cuerpo está más en modo alerta que en modo presencia",           v: "P" }
+    ]
+  }
+];
+
+/* ──────────────────────────────────────────────────
+   RESULTADOS — nombran sin diagnosticar
+   4 perfiles → 4 escalones de la escalera de valor
+────────────────────────────────────────────────── */
+const Results = {
+  S: {
+    badge: "Cuerpo que eligió protegerse",
+    title: "Tu cuerpo está <em>cuidándote</em>",
+    body: [
+      "Lo que describes suena a que tu sistema nervioso activó uno de sus mecanismos más sabios: alejarte un poco de lo que viviste para que puedas seguir de pie. No estás rota. No estás bloqueada. Tu cuerpo hizo exactamente lo que sabe hacer cuando algo es demasiado grande.",
+      "Esa distancia que sientes — ese vidrio, esa sensación de no estar del todo dentro — no es indiferencia. Es la forma en que un cuerpo inteligente se protege mientras espera que haya recursos suficientes para ir hacia lo que duele.",
+      "Lo que más puede ayudarte ahora no es ir más adentro todavía, sino crear pequeños puntos de contacto suave con lo físico: temperatura, textura, ritmo. Recordarle a tu cuerpo, poco a poco, que sigues aquí y que aquí hay tierra."
+    ]
+  },
+  P: {
+    badge: "Cuerpo que carga y recuerda",
+    title: "Tu cuerpo <em>sostuvo mucho</em>",
+    body: [
+      "Lo que describes habla de un cuerpo que lleva algo concreto y pesado — en el pecho, en el vientre, en la garganta. Eso no es debilidad. Es que tu cuerpo tomó todo lo que no pudo procesarse de otra forma y lo guardó ahí, porque no había otro lugar.",
+      "Tu cuerpo no te falló. Pasó por algo enorme y lo sostuvo como pudo. Lo que necesita ahora no es más fuerza para seguir cargando — necesita ser reconocido por lo que sostuvo.",
+      "El trabajo que más puede ayudarte es el del contacto consciente con las zonas donde sientes ese peso. No para eliminar lo que está ahí, sino para acompañarlo — para que no tenga que cargarlo solo."
+    ]
+  },
+  B: {
+    badge: "Cuerpo que busca tierra firme",
+    title: "Tu cuerpo está <em>buscando dónde pararse</em>",
+    body: [
+      "Hay una oscilación que describes — días que fluye, días que todo pesa, un ritmo que ya no reconoces del todo. Eso es comprensible: cuando algo importante se mueve en la vida, el suelo tarda en volver a sentirse sólido.",
+      "No tienes que encontrar el equilibrio de antes. Ese suelo puede haberse transformado — y el nuevo todavía no tiene forma clara. Mientras tanto, los pequeños actos de anclaje pueden hacer mucho más de lo que imaginas.",
+      "Lo que más puede ayudarte son rituales simples de presencia: cosas concretas y repetidas que le digan a tu sistema nervioso que hay continuidad, que hay algo que no cambia, que hay suelo aunque sea pequeño."
+    ]
+  },
+  D: {
+    badge: "Cuerpo que empieza a moverse",
+    title: "Algo en ti está comenzando <em>a hablar</em>",
+    body: [
+      "Lo que describes tiene movimiento. Algo en tu cuerpo está empezando a buscar — no necesariamente claridad todavía, pero sí una dirección. Eso no significa que lo que viviste terminó de integrarse; significa que tu sistema nervioso tiene algo más de espacio para habitarlo.",
+      "Este momento puede traer su propio tipo de confusión — o incluso culpa. ¿Puedo sentirme diferente sin que eso signifique que olvidé? La respuesta es sí. Integrar no es olvidar. Llevar algo con amor no requiere que siga doliendo igual.",
+      "Lo que más puede ayudarte ahora es escuchar lo que tu cuerpo está pidiendo — puede ser movimiento, expresión, conexión. Este es un buen momento para empezar a darte lo que llevas tiempo necesitando."
+    ]
+  }
+};
+
+/* ──────────────────────────────────────────────────
+   MINI-RECURSOS + CTAs vinculados a la escalera
+   S → recurso gratuito (audio / podcast)
+   P → masterclass
+   B → lista de espera Habitarme
+   D → Habitarme o bootcamp ceremonial
+────────────────────────────────────────────────── */
+const MiniRes = {
+  S: {
+    welcome: "Tu mini-guía: El primer contacto. Tres prácticas muy suaves para cuando el cuerpo se siente lejos. No necesitas sentir más de lo que sientes — solo estar un poco más cerca.",
+    practices: [
+      {
+        title: "La temperatura consciente",
+        text: "Toma algo entre tus manos — una taza caliente, un vaso frío. Cierra los ojos 30 segundos. Siente esa temperatura sin hacer nada más. Ese contacto simple es un primer hilo entre tú y tu cuerpo. No tienes que ir más lejos hoy."
+      },
+      {
+        title: "El recorrido sin expectativas",
+        text: "Siéntate cómodamente y recorre mentalmente tu cuerpo de pies a cabeza — pero sin buscar nada. Si hay zonas donde no sientes nada, está bien. Si hay zonas que duelen, está bien. Solo nota, sin juzgar. No necesitas sentir más de lo que sientes hoy."
+      },
+      {
+        title: "La textura como ancla",
+        text: "Elige una textura que te guste — una tela suave, madera, una superficie rugosa. Pasa los dedos lentamente sobre ella y descríbela mentalmente: ¿es suave, fría, cálida, áspera? Esto le recuerda a tu sistema nervioso que está aquí, en este cuerpo, en este momento."
+      }
+    ],
+    prompt: "\"Si mi cuerpo pudiera hablar hoy, ¿qué sería lo primero que diría?\"",
+    llevar: "No tengo que volver a mi cuerpo de golpe. Puedo acercarme despacio, con gentileza — como me acercaría a alguien que acaba de vivir algo muy grande.",
+    cta: {
+      clase: "cta-audio",
+      texto: "En el podcast <strong>Soy Geovana</strong> hay episodios pensados para momentos exactamente como este — cuando el cuerpo está en modo protección y necesitas algo que te acompañe sin exigirte nada.",
+      boton: "Escuchar el podcast",
+      href: "#",
+      sub: "Gratuito · A tu ritmo · Sin tener que explicarte"
+    }
+  },
+  P: {
+    welcome: "Tu mini-guía: Sostener sin cargar sola. Tres prácticas para el cuerpo que carga. No para eliminar el peso — sino para acompañarlo con más presencia.",
+    practices: [
+      {
+        title: "El reconocimiento",
+        text: "Pon una mano sobre el lugar donde sientes el peso — el pecho, el vientre, la garganta. Solo la mano, sin hacer nada más. Respira suavemente. Si quieres, dile en silencio a esa zona: \"Te veo. No te voy a ignorar.\" Quédate así el tiempo que necesites."
+      },
+      {
+        title: "La respiración que acompaña",
+        text: "Inhala suavemente 4 tiempos. Al exhalar, imagina que el peso no desaparece — sino que se distribuye un poco. Que en lugar de estar concentrado en un punto, se expande levemente hacia el resto de tu cuerpo. Solo 5 ciclos, sin forzar nada."
+      },
+      {
+        title: "El movimiento mínimo",
+        text: "En posición cómoda, empieza a mecerte muy suavemente — adelante y atrás, o de lado a lado. Como un bote en agua calma. Este movimiento rítmico activa la respuesta de calma de tu sistema nervioso. No hay forma incorrecta de mecerse."
+      }
+    ],
+    prompt: "\"¿Qué quisiera decirle a mi cuerpo por todo lo que vivió y sostuvo?\"",
+    llevar: "Mi cuerpo no me falló. Pasó por algo enorme y lo sostuvo como pudo. Merece mi compasión antes que mi crítica.",
+    cta: {
+      clase: "cta-master",
+      texto: "Si quieres entender <em>por qué</em> tu cuerpo siente lo que siente y qué necesita para empezar a soltar ese peso, la <strong>Masterclass gratuita</strong> de Soy Geovana está pensada para eso — para darle nombre a lo que está pasando.",
+      boton: "Quiero ir a la Masterclass",
+      href: "#",
+      sub: "Gratuita · Online · Sin compromisos"
+    }
+  },
+  B: {
+    welcome: "Tu mini-guía: Encontrar tierra firme. Tres rituales de anclaje para cuando todo se siente inestable. No buscamos el equilibrio de antes — buscamos pequeños puntos de contacto con lo que sí está.",
+    practices: [
+      {
+        title: "Los pies en el suelo",
+        text: "Quítate el calzado si puedes. Pon los pies planos en el suelo y presiona suavemente — siente el suelo respondiéndote. Nota la temperatura, la textura. Tu cuerpo está en contacto con algo real y firme ahora mismo. Quédate así 1-2 minutos."
+      },
+      {
+        title: "El objeto ancla",
+        text: "Elige un objeto pequeño que puedas cargar contigo — una piedra, una semilla, algo con textura clara. Cuando sientas que el suelo desaparece, saca ese objeto. Sostenlo. Siéntelo. Es un recordatorio físico de que hay cosas que no cambian."
+      },
+      {
+        title: "El ritual de los tres",
+        text: "Elige tres actos pequeños que puedas hacer cada día a la misma hora — preparar té, abrir una ventana, tocar una planta. La repetición le dice a tu sistema nervioso: hay ritmo, hay continuidad, hay suelo. No tienen que ser significativos. Solo constantes."
+      }
+    ],
+    prompt: "\"¿Qué sensación de suelo recuerdo de antes? ¿Cómo se sentía estar parada en esa tierra?\"",
+    llevar: "No tengo que encontrar el equilibrio de antes. Puedo construir, poco a poco, un suelo nuevo — uno que ya sabe lo que ha vivido.",
+    cta: {
+      clase: "cta-habitar",
+      texto: "<strong>Habitarme</strong> es un espacio de acompañamiento diseñado para mujeres en exactamente este lugar — que funcionan, que sostienen su vida, y que sienten que algo en el cuerpo todavía no terminó de regresar.",
+      boton: "Quiero saber más sobre Habitarme",
+      href: "#",
+      sub: "Programa de acompañamiento · A tu ritmo · Sin prisa"
+    }
+  },
+  D: {
+    welcome: "Tu mini-guía: Escuchar sin apresurarse. Tres prácticas para acompañar lo que empieza a moverse. Integrar no es olvidar — y este momento merece tanta gentileza como cualquier otro.",
+    practices: [
+      {
+        title: "La pausa antes de actuar",
+        text: "Antes de responder al siguiente impulso de tu cuerpo — comer, caminar, hablar — haz una pausa de 10 segundos. Pregúntate: ¿esto es lo que mi cuerpo realmente necesita, o lo que creo que debería necesitar? No hay respuesta incorrecta. Solo la práctica de preguntar."
+      },
+      {
+        title: "El permiso explícito",
+        text: "Di en voz alta, aunque sea en susurro, una de estas frases: \"Tengo permiso de sentirme diferente hoy.\" / \"Tengo permiso de que algunas cosas vuelvan, aunque no todo haya terminado.\" / \"Tengo permiso de necesitar cosas que cambian de un día para otro.\" Elige la que más se resiste en ti."
+      },
+      {
+        title: "La expresión sin forma",
+        text: "Dale a lo que se mueve en ti algún tipo de salida sin objetivo: mover el cuerpo libremente 2 minutos, garabatear en un papel, tararear sin melodía. No se trata de procesar — se trata de darle espacio a lo que pide salir."
+      }
+    ],
+    prompt: "\"¿Qué está pidiendo mi cuerpo que todavía no me he dado?\"",
+    llevar: "Integrar no es olvidar. Puedo llevar esta experiencia conmigo y seguir presente en mi vida — no son cosas que se contradicen.",
+    cta: {
+      clase: "cta-despier",
+      texto: "Si sientes que algo está empezando a moverse y quieres un espacio donde ese movimiento tenga acompañamiento real, <strong>Habitarme</strong> fue diseñado para este momento exacto — y también el <strong>Bootcamp Ceremonial</strong> para honrar todo lo que viviste.",
+      boton: "Quiero saber más",
+      href: "#",
+      sub: "Programa Habitarme · Bootcamp Ceremonial · A tu ritmo"
+    }
+  }
+};
+
+/* ────── LÓGICA ──────────────────────────────────── */
+let answers = [], cur = 0, lastKey = '';
+
+function show(id) {
+  document.querySelectorAll('.q-state').forEach(s => s.classList.remove('on'));
+  document.getElementById('st-' + id).classList.add('on');
+}
+
+function scrollToQuiz() {
+  document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => { if (cur === 0 && answers.length === 0) {
+    show('start');
+  }}, 500);
+}
+
+function startQuiz() {
+  answers = []; cur = 0;
+  renderQ(); show('q');
+}
+
+function renderQ() {
+  const q = Qs[cur];
+  // Progress dots
+  const prog = document.getElementById('prog');
+  prog.innerHTML = '';
+  Qs.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === cur ? ' cur' : '') + (i < cur ? ' done' : '');
+    prog.appendChild(d);
+  });
+  document.getElementById('qLabel').textContent = 'Pregunta ' + (cur + 1) + ' de ' + Qs.length;
+  document.getElementById('qText').textContent = q.text;
+  const opts = document.getElementById('opts');
+  opts.innerHTML = '';
+  q.opts.forEach(o => {
+    const b = document.createElement('button');
+    b.className = 'opt';
+    b.innerHTML = o.t + '<span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>';
+    b.onclick = () => pick(b, o.v);
+    opts.appendChild(b);
+  });
+}
+
+function pick(btn, val) {
+  document.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+  btn.classList.add('sel');
+  setTimeout(() => {
+    answers.push(val);
+    cur++;
+    if (cur < Qs.length) {
+      renderQ();
+    } else {
+      show('load');
+      setTimeout(renderResult, 2200);
+    }
+  }, 360);
+}
+
+function calcResult() {
+  const c = {};
+  answers.forEach(a => c[a] = (c[a] || 0) + 1);
+  return Object.entries(c).sort((a, b) => b[1] - a[1])[0][0];
+}
+
+function renderResult() {
+  lastKey = calcResult();
+  const r = Results[lastKey];
+  document.getElementById('resBadge').textContent = r.badge;
+  document.getElementById('resTitle').innerHTML = r.title;
+  document.getElementById('resBody').innerHTML = r.body.map(p => '<p>' + p + '</p>').join('');
+  show('res');
+}
+
+function renderMiniResource(name) {
+  const m = MiniRes[lastKey];
+  const firstName = name.split(' ')[0];
+  document.getElementById('mrGreeting').textContent = firstName + ', aquí está tu mini-guía.';
+  document.getElementById('mrWelcomeText').textContent = m.welcome;
+
+  const pc = document.getElementById('mrPractices');
+  pc.innerHTML = '';
+  m.practices.forEach((p, i) => {
+    pc.innerHTML += `
+      <div class="mr-practice">
+        <div class="mr-practice-num">${i + 1}</div>
+        <h4>${p.title}</h4>
+        <p>${p.text}</p>
+      </div>`;
+  });
+
+  document.getElementById('mrPromptQ').textContent = m.prompt;
+  document.getElementById('mrLlevar').textContent = m.llevar;
+
+  // CTA diferenciado por perfil
+  const cta = m.cta;
+  document.getElementById('mrCta').className = 'mr-cta ' + cta.clase;
+  document.getElementById('mrCta').innerHTML = `
+    <p>${cta.texto}</p>
+    <a href="${cta.href}" class="btn btn-primary" style="animation:none;opacity:1;text-decoration:none;">
+      ${cta.boton}
+    </a>
+    <span class="cta-sub">${cta.sub}</span>
+  `;
+
+  show('ty');
+}
+
+function submitForm() {
+  const name  = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  if (!name)  { document.getElementById('fName').focus();  return; }
+  if (!email || !email.includes('@')) { document.getElementById('fEmail').focus(); return; }
+  // TODO: conectar plataforma de email (Mailchimp, ConvertKit, ActiveCampaign…)
+  // fetch('/subscribe', { method:'POST', body: JSON.stringify({ name, email, result: lastKey }) })
+  console.log('Lead capturado:', { name, email, result: lastKey });
+  renderMiniResource(name);
+}
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
