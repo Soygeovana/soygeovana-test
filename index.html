@@ -506,15 +506,6 @@ footer a:hover { color: var(--cobre-light); }
   .hero { padding: 6rem 1.35rem 4rem; }
 }
 </style>
-<!-- MailerLite Universal -->
-<script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '2448133');
-</script>
-<!-- End MailerLite Universal -->
 </head>
 <body>
 
@@ -716,9 +707,7 @@ footer a:hover { color: var(--cobre-light); }
   <span class="footer-brand">Soy Geovana</span>
   <p>Un espacio donde tu cuerpo y tu experiencia tienen lugar.<br>Sin prisa. Sin etapas. A tu ritmo.</p>
   <div class="footer-links">
-    <a href="#">Aviso de privacidad</a>
-    <a href="#">Contacto</a>
-    <a href="#">Instagram</a>
+    <a href="https://www.instagram.com/soy.geovana" target="_blank" rel="noopener">Instagram</a>
   </div>
 </footer>
 
@@ -846,9 +835,9 @@ const MiniRes = {
     llevar: "No tengo que volver a mi cuerpo de golpe. Puedo acercarme despacio, con gentileza — como me acercaría a alguien que acaba de vivir algo muy grande.",
     cta: {
       clase: "cta-audio",
-      texto: "En el podcast <strong>Soy Geovana</strong> hay episodios pensados para momentos exactamente como este — cuando el cuerpo está en modo protección y necesitas algo que te acompañe sin exigirte nada.",
+      texto: "En el podcast <strong>Sendero Gestacional</strong> hay episodios pensados para momentos exactamente como este — cuando el cuerpo está en modo protección y necesitas algo que te acompañe sin exigirte nada.",
       boton: "Escuchar el podcast",
-      href: "#",
+      href: "https://open.spotify.com/show/7x8L4odk2KO2dteULYPjNl",
       sub: "Gratuito · A tu ritmo · Sin tener que explicarte"
     }
   },
@@ -871,11 +860,11 @@ const MiniRes = {
     prompt: "\"¿Qué quisiera decirle a mi cuerpo por todo lo que vivió y sostuvo?\"",
     llevar: "Mi cuerpo no me falló. Pasó por algo enorme y lo sostuvo como pudo. Merece mi compasión antes que mi crítica.",
     cta: {
-      clase: "cta-master",
-      texto: "Si quieres entender <em>por qué</em> tu cuerpo siente lo que siente y qué necesita para empezar a soltar ese peso, la <strong>Masterclass gratuita</strong> de Soy Geovana está pensada para eso — para darle nombre a lo que está pasando.",
-      boton: "Quiero ir a la Masterclass",
-      href: "#",
-      sub: "Gratuita · Online · Sin compromisos"
+      clase: "cta-audio",
+      texto: "En el podcast <strong>Sendero Gestacional</strong> hay episodios pensados para momentos exactamente como este — para acompañar lo que el cuerpo carga sin pedirte que lo expliques.",
+      boton: "Escuchar el podcast",
+      href: "https://open.spotify.com/show/7x8L4odk2KO2dteULYPjNl",
+      sub: "Gratuito · A tu ritmo · Sin tener que explicarte"
     }
   },
   B: {
@@ -897,11 +886,11 @@ const MiniRes = {
     prompt: "\"¿Qué sensación de suelo recuerdo de antes? ¿Cómo se sentía estar parada en esa tierra?\"",
     llevar: "No tengo que encontrar el equilibrio de antes. Puedo construir, poco a poco, un suelo nuevo — uno que ya sabe lo que ha vivido.",
     cta: {
-      clase: "cta-habitar",
-      texto: "<strong>Habitarme</strong> es un espacio de acompañamiento diseñado para mujeres en exactamente este lugar — que funcionan, que sostienen su vida, y que sienten que algo en el cuerpo todavía no terminó de regresar.",
-      boton: "Quiero saber más sobre Habitarme",
-      href: "#",
-      sub: "Programa de acompañamiento · A tu ritmo · Sin prisa"
+      clase: "cta-audio",
+      texto: "En el podcast <strong>Sendero Gestacional</strong> hay episodios que hablan del cuerpo que busca tierra firme — acompañamiento real para los días que todo se siente inestable.",
+      boton: "Escuchar el podcast",
+      href: "https://open.spotify.com/show/7x8L4odk2KO2dteULYPjNl",
+      sub: "Gratuito · A tu ritmo · Sin prisa"
     }
   },
   D: {
@@ -923,11 +912,11 @@ const MiniRes = {
     prompt: "\"¿Qué está pidiendo mi cuerpo que todavía no me he dado?\"",
     llevar: "Integrar no es olvidar. Puedo llevar esta experiencia conmigo y seguir presente en mi vida — no son cosas que se contradicen.",
     cta: {
-      clase: "cta-despier",
-      texto: "Si sientes que algo está empezando a moverse y quieres un espacio donde ese movimiento tenga acompañamiento real, <strong>Habitarme</strong> fue diseñado para este momento exacto — y también el <strong>Bootcamp Ceremonial</strong> para honrar todo lo que viviste.",
-      boton: "Quiero saber más",
-      href: "#",
-      sub: "Programa Habitarme · Bootcamp Ceremonial · A tu ritmo"
+      clase: "cta-audio",
+      texto: "En el podcast <strong>Sendero Gestacional</strong> encontrarás episodios que acompañan exactamente este movimiento que empieza — sin apresurarlo, sin nombrarlo de más.",
+      boton: "Escuchar el podcast",
+      href: "https://open.spotify.com/show/7x8L4odk2KO2dteULYPjNl",
+      sub: "Gratuito · A tu ritmo · Sin compromisos"
     }
   }
 };
@@ -1030,7 +1019,7 @@ function renderMiniResource(name) {
   document.getElementById('mrCta').className = 'mr-cta ' + cta.clase;
   document.getElementById('mrCta').innerHTML = `
     <p>${cta.texto}</p>
-    <a href="${cta.href}" class="btn btn-primary" style="animation:none;opacity:1;text-decoration:none;">
+    <a href="${cta.href}" class="btn btn-primary" style="animation:none;opacity:1;text-decoration:none;" target="_blank" rel="noopener">
       ${cta.boton}
     </a>
     <span class="cta-sub">${cta.sub}</span>
@@ -1044,19 +1033,8 @@ function submitForm() {
   const email = document.getElementById('fEmail').value.trim();
   if (!name)  { document.getElementById('fName').focus();  return; }
   if (!email || !email.includes('@')) { document.getElementById('fEmail').focus(); return; }
-  fetch('https://connect.mailerlite.com/api/subscribers', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMzg4YjM5YWQ2MDI2ZWYwZDBiNTNiNDdlODE4YjM3NzgyNTI2OGZmNThlNzE3NTRkZGZjNWExNDEzM2FmODQ3N2IyYmI5MGMwMzYxZjM4ZjUiLCJpYXQiOjE3ODE1ODI0ODguNjI0MTg2LCJuYmYiOjE3ODE1ODI0ODguNjI0MTg5LCJleHAiOjQ5MzcyNTYwODguNjE5NDA4LCJzdWIiOiIyNDY0NzMwIiwic2NvcGVzIjpbXX0.UOBpy94nZdyfd7ZAkH9NN3bSwfSMBuBbUNUEc8aahki6SejCI--kmmBGJnhiwJIPTZQDn6MgKpUhnV5J4bXwDt-rhnh4CYY4_TRuqtw1JG5k8IvJKY_pYrBWLWLFNpA3YgkuFzMXuNCI5AbHb4iAdusZwc4ZtDEN2FhxNxxYzTdQlggOMGQOApoa723MADvh07EjBre8ulCi5dCuT8bjKkMVc8rVfJaDw00U22vZ1UMRbc0U5yo6qdzCZf0XeJ9iRrL4T7Qhj3YT18rAlmMkCw2ShXO-OLhBA8-GewCEY09NzxLRQ_3_3xv45-xx8fTOxgLlSV7Tq1EqXejYAeUFuiXXFVwEgR4btAXpjFf9NZ1EbHVWeFB7BS6qRNy1cny_vH6d5kyx8HvABo5aLaruAN32BsRLhd42CBruIo-lJJO7SSYAwDT_ioevj0D3V0UoImZSMN1NiZAEaxQ-lu59ifD7gy07ZXlYbTap4XHfkb3ZH-l9fG-DOB-Y-w3UbdM1kFiGLAvGhAOxfwEucio3Im7GNlcs65zHDg5PrJiah6RvONqP_uJouMJPVERaKhmMv4AM0U4m3ZfWlxde-gnIckJTc8JHJbj6QHeHsA2CpFX5_jbvp-4Hny2H-Dertf9WqRNXm7hS3unMgAUiFLiyhS7EZrTVTAHM8kU90EU_Y2Y'
-  },
-  body: JSON.stringify({
-    email: email,
-    fields: { name: name },
-    groups: ['kFA7pZ']
-  })
-});
+  // TODO: conectar plataforma de email (Mailchimp, ConvertKit, ActiveCampaign…)
+  // fetch('/subscribe', { method:'POST', body: JSON.stringify({ name, email, result: lastKey }) })
   console.log('Lead capturado:', { name, email, result: lastKey });
   renderMiniResource(name);
 }
