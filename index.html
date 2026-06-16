@@ -1044,8 +1044,10 @@ function submitForm() {
   const email = document.getElementById('fEmail').value.trim();
   if (!name)  { document.getElementById('fName').focus();  return; }
   if (!email || !email.includes('@')) { document.getElementById('fEmail').focus(); return; }
-  // TODO: conectar plataforma de email (Mailchimp, ConvertKit, ActiveCampaign…)
-  // fetch('/subscribe', { method:'POST', body: JSON.stringify({ name, email, result: lastKey }) })
+  ml('subscribers', 'add', {
+  fields: { name: name, email: email },
+  groups: ['kFA7pZ']
+});
   console.log('Lead capturado:', { name, email, result: lastKey });
   renderMiniResource(name);
 }
