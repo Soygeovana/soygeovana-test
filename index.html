@@ -1044,9 +1044,18 @@ function submitForm() {
   const email = document.getElementById('fEmail').value.trim();
   if (!name)  { document.getElementById('fName').focus();  return; }
   if (!email || !email.includes('@')) { document.getElementById('fEmail').focus(); return; }
-  ml('subscribers', 'add', {
-  fields: { name: name, email: email },
-  groups: ['kFA7pZ']
+  fetch('https://connect.mailerlite.com/api/subscribers', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiMzg4YjM5YWQ2MDI2ZWYwZDBiNTNiNDdlODE4YjM3NzgyNTI2OGZmNThlNzE3NTRkZGZjNWExNDEzM2FmODQ3N2IyYmI5MGMwMzYxZjM4ZjUiLCJpYXQiOjE3ODE1ODI0ODguNjI0MTg2LCJuYmYiOjE3ODE1ODI0ODguNjI0MTg5LCJleHAiOjQ5MzcyNTYwODguNjE5NDA4LCJzdWIiOiIyNDY0NzMwIiwic2NvcGVzIjpbXX0.UOBpy94nZdyfd7ZAkH9NN3bSwfSMBuBbUNUEc8aahki6SejCI--kmmBGJnhiwJIPTZQDn6MgKpUhnV5J4bXwDt-rhnh4CYY4_TRuqtw1JG5k8IvJKY_pYrBWLWLFNpA3YgkuFzMXuNCI5AbHb4iAdusZwc4ZtDEN2FhxNxxYzTdQlggOMGQOApoa723MADvh07EjBre8ulCi5dCuT8bjKkMVc8rVfJaDw00U22vZ1UMRbc0U5yo6qdzCZf0XeJ9iRrL4T7Qhj3YT18rAlmMkCw2ShXO-OLhBA8-GewCEY09NzxLRQ_3_3xv45-xx8fTOxgLlSV7Tq1EqXejYAeUFuiXXFVwEgR4btAXpjFf9NZ1EbHVWeFB7BS6qRNy1cny_vH6d5kyx8HvABo5aLaruAN32BsRLhd42CBruIo-lJJO7SSYAwDT_ioevj0D3V0UoImZSMN1NiZAEaxQ-lu59ifD7gy07ZXlYbTap4XHfkb3ZH-l9fG-DOB-Y-w3UbdM1kFiGLAvGhAOxfwEucio3Im7GNlcs65zHDg5PrJiah6RvONqP_uJouMJPVERaKhmMv4AM0U4m3ZfWlxde-gnIckJTc8JHJbj6QHeHsA2CpFX5_jbvp-4Hny2H-Dertf9WqRNXm7hS3unMgAUiFLiyhS7EZrTVTAHM8kU90EU_Y2Y'
+  },
+  body: JSON.stringify({
+    email: email,
+    fields: { name: name },
+    groups: ['kFA7pZ']
+  })
 });
   console.log('Lead capturado:', { name, email, result: lastKey });
   renderMiniResource(name);
