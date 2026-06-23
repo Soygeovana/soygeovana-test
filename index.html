@@ -1094,13 +1094,15 @@ async function submitForm() {
   btn.disabled = true;
   btn.textContent = 'Enviando…';
 
+  const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNDQ5NzI0YWViNzhiNGNlMGZhMjc3MGFkOGE1NmU1YWYyNzJlZDUyODQ2YzJmYjljYTE1OThjNjZkNzRiNTFiYzI3Y2RlMGY1YzM4ZWE3ZjIiLCJpYXQiOjE3ODIyNTA3ODUuMjAyNjEyLCJuYmYiOjE3ODIyNTA3ODUuMjAyNjE1LCJleHAiOjQ5Mzc5MjQzODUuMTk3NTUsInN1YiI6IjI0NjQ3MzAiLCJzY29wZXMiOltdfQ.cDLauYDowu_Z48KHlw53O4Ach80JSVY6gPoDYGhiQEiyfagPs0UjCKpzCtcq-EbAfifPvH4_U0SCFLNsde1FcQVuW-z1S5_eHUslfZqG69ahXUr6TpEAp4u29Ymr_AOXgJFAtATwByF41t4OY3-s03ASZXxC4yWIww7XBRcsN7pBPFEPTVn6PlEgwmoWp4a2JH8ddonWWDFk_G9atIoi8FrUi7mPAAsI_gj5Lx9XMR001Lx8lLBqFCojwcuuq_vOj-y5yYVMLjGMzpWzR7AVJqjiLU-nJRNggN8lcW8ObDZ9m8iAWDNkSi77R-gLLqX5FsF4K6m7ZSaPjsfoOvGzznQpxwq1JSnj7gL-cgUwkgynKPqfI9cpmE8JX9y0xzyJNglVi2mOWKWzgixnUK9s9i7Xv8brdkHDkzgIqidrnNveHCVTSvsCBVz9eQtIAjrhax4q7sglBZa_UimHX1kLkpK_no2XiRUsRRwGzFUVzYM2ikqpqAivEiI55kfvVbe8DabGHSgriUFJvFo24XqSB5dXM8KJCJCHfzp4yE-6fJpKRDpACqLKu7vU3TR43JQaW7QwYSedDjXQnUa4qZOR9NVep7yOEvwqFc7be-s15lKOYHZXfoNdqTeoGm-Ij-AMj8lmELjNa9A4KO8nRsjjRwtReoYjUxtVKlWWxiOCAHc';
+
   try {
     await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNDQ5NzI0YWViNzhiNGNlMGZhMjc3MGFkOGE1NmU1YWYyNzJlZDUyODQ2YzJmYjljYTE1OThjNjZkNzRiNTFiYzI3Y2RlMGY1YzM4ZWE3ZjIiLCJpYXQiOjE3ODIyNTA3ODUuMjAyNjEyLCJuYmYiOjE3ODIyNTA3ODUuMjAyNjE1LCJleHAiOjQ5Mzc5MjQzODUuMTk3NTUsInN1YiI6IjI0NjQ3MzAiLCJzY29wZXMiOltdfQ.cDLauYDowu_Z48KHlw53O4Ach80JSVY6gPoDYGhiQEiyfagPs0UjCKpzCtcq-EbAfifPvH4_U0SCFLNsde1FcQVuW-z1S5_eHUslfZqG69ahXUr6TpEAp4u29Ymr_AOXgJFAtATwByF41t4OY3-s03ASZXxC4yWIww7XBRcsN7pBPFEPTVn6PlEgwmoWp4a2JH8ddonWWDFk_G9atIoi8FrUi7mPAAsI_gj5Lx9XMR001Lx8lLBqFCojwcuuq_vOj-y5yYVMLjGMzpWzR7AVJqjiLU-nJRNggN8lcW8ObDZ9m8iAWDNkSi77R-gLLqX5FsF4K6m7ZSaPjsfoOvGzznQpxwq1JSnj7gL-cgUwkgynKPqfI9cpmE8JX9y0xzyJNglVi2mOWKWzgixnUK9s9i7Xv8brdkHDkzgIqidrnNveHCVTSvsCBVz9eQtIAjrhax4q7sglBZa_UimHX1kLkpK_no2XiRUsRRwGzFUVzYM2ikqpqAivEiI55kfvVbe8DabGHSgriUFJvFo24XqSB5dXM8KJCJCHfzp4yE-6fJpKRDpACqLKu7vU3TR43JQaW7QwYSedDjXQnUa4qZOR9NVep7yOEvwqFc7be-s15lKOYHZXfoNdqTeoGm-Ij-AMj8lmELjNa9A4KO8nRsjjRwtReoYjUxtVKlWWxiOCAHc'
+        'Authorization': 'Bearer ' + TOKEN
       },
       body: JSON.stringify({
         email: email,
@@ -1114,7 +1116,6 @@ async function submitForm() {
 
   renderMiniResource(name);
 }
-
 // Nav scroll
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
