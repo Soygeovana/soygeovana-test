@@ -686,7 +686,19 @@ footer a:hover { color: var(--cobre-light); }
         <span class="res-badge" id="resBadge"></span>
         <h2 class="res-title" id="resTitle"></h2>
         <div class="res-body" id="resBody"></div>
-        <div class="res-line"></div>
+       <div class="res-line"></div>
+<div class="email-box">
+  <h3>Tu mini-guía te espera</h3>
+  <p>Déjame tu nombre y correo y te envío ahora mismo tu guía con prácticas y recursos específicos para donde está tu cuerpo hoy.</p>
+  <div class="form-fields" id="theForm">
+    <input type="text"  id="fName"  placeholder="Tu nombre" autocomplete="given-name"/>
+    <input type="email" id="fEmail" placeholder="Tu correo electrónico" autocomplete="email"/>
+    <button class="btn btn-primary btn-full" onclick="submitForm()" style="animation:none;opacity:1;">
+      Recibir mi guía
+    </button>
+  </div>
+  <p class="form-note">Sin spam. Puedes darte de baja cuando quieras.</p>
+</div>
       </div>
 
       <!-- MINI RECURSO + CTA por perfil -->
