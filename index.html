@@ -997,35 +997,14 @@ function renderResult() {
 }
 
 function renderMiniResource(name) {
-  const m = MiniRes[lastKey];
   const firstName = name.split(' ')[0];
-  document.getElementById('mrGreeting').textContent = firstName + ', aquí está tu mini-guía.';
-  document.getElementById('mrWelcomeText').textContent = m.welcome;
+  document.getElementById('mrGreeting').textContent = firstName + ', ya está en camino.';
+  document.getElementById('mrWelcomeText').textContent = 'Tu mini-guía está en tu correo. Revisa tu bandeja de entrada — y también la carpeta de spam, por si acaso.';
 
-  const pc = document.getElementById('mrPractices');
-  pc.innerHTML = '';
-  m.practices.forEach((p, i) => {
-    pc.innerHTML += `
-      <div class="mr-practice">
-        <div class="mr-practice-num">${i + 1}</div>
-        <h4>${p.title}</h4>
-        <p>${p.text}</p>
-      </div>`;
-  });
-
-  document.getElementById('mrPromptQ').textContent = m.prompt;
-  document.getElementById('mrLlevar').textContent = m.llevar;
-
-  // CTA diferenciado por perfil
-  const cta = m.cta;
-  document.getElementById('mrCta').className = 'mr-cta ' + cta.clase;
-  document.getElementById('mrCta').innerHTML = `
-    <p>${cta.texto}</p>
-    <a href="${cta.href}" class="btn btn-primary" style="animation:none;opacity:1;text-decoration:none;">
-      ${cta.boton}
-    </a>
-    <span class="cta-sub">${cta.sub}</span>
-  `;
+  document.getElementById('mrPractices').innerHTML = '';
+  document.getElementById('mrPromptQ').textContent = '';
+  document.getElementById('mrLlevar').textContent = '';
+  document.getElementById('mrCta').innerHTML = '';
 
   show('ty');
 }
